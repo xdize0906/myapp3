@@ -1,38 +1,190 @@
+/* Reset box sizing and margin/padding */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  background: #533e3e;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Prevent scrollbars due to margin */
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Main app container, shrink-wrap to content */
 .App {
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
   text-align: center;
+  box-sizing: border-box;
+  user-select: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.choose-type-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.choose-type {
+  max-width: 360px;
+  width: 100%;
+  background: white;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
+  user-select: none;
+  border: none;
+}
+
+h1 {
+  font-weight: 700;
+  color: #333;
+  font-size: 2.4rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+}
+
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.tile {
+  background-color: #eee;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.tile:hover {
+  background-color: #ddd;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.12);
+}
+
+.tile.revealed {
+  cursor: default;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid transparent;
+}
+
+.tile img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hidden-tile {
+  width: 100%;
+  height: 100%;
+  background-color: #e53935; /* professional red */
+  border-radius: 10px;
+  user-select: none;
+}
+
+.restart-button {
+  margin-top: 35px;
+  padding: 10px 28px;
+  font-size: 18px;
+  border: 2px solid rgba(67, 160, 71, 0.8);
+  background-color: #43a047;
   color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 3px 6px rgba(67, 160, 71, 0.25);
+  user-select: none;
 }
 
-.App-link {
-  color: #61dafb;
+.restart-button:hover {
+  background-color: #388e3c;
+  border-color: rgba(56, 142, 60, 1);
+  box-shadow: 0 5px 10px rgba(56, 142, 60, 0.4);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.lose-message {
+  margin-top: 20px;
+  font-weight: 700;
+  color: #d32f2f;
+  font-size: 20px;
+  user-select: none;
+}
+
+.choice-button {
+  font-size: 24px;
+  padding: 18px 50px;
+  cursor: pointer;
+  border: 2px solid rgba(76, 175, 80, 0.8);
+  border-radius: 16px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.25);
+  width: 100%;
+  max-width: 260px;
+  user-select: none;
+}
+
+.choice-button:hover {
+  background-color: #43a047;
+  border-color: rgba(56, 142, 60, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(67, 160, 71, 0.35);
+}
+
+.chosen-type {
+  font-size: 20px;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #444;
+  user-select: none;
+}
+
+.streak-display {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #555;
+  user-select: none;
 }
